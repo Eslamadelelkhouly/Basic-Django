@@ -26,5 +26,14 @@ def post_create(request):
     return render(request , 'post/post_create.html',{'form':form})
 
 
-def post_edit(request):
-    pass
+def post_edit(request , id):
+    post = Post.objects.get(id=id)
+    if request.method == "POST":
+        print('in post')
+        form = PostForm(request.POST,instance=post)
+        if form.is_valid:
+            form.save()
+    else:
+        print('in else')
+        form = PostForm(instance=post)
+    return render(request , 'post/post_edit.html',{'form':form})
