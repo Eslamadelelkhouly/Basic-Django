@@ -1,6 +1,6 @@
 <h2>Blog</h2>
 <a href="">Add New post</a>
 <hr>
-{%for post in all_posts%}    
+{%for post in object_list%}    
     <a href="{%url 'blog:post_details' post.id%}"><h4>{{post}}</h4></a>
 {% endfor %}
