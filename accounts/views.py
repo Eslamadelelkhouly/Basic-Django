@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .forms import SignupForm
+from .forms import SignupForm , UserForm , ProfileForm
 from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login
@@ -25,4 +25,15 @@ def profile(request):
 
 
 def edit_profile(request):
-    pass
+    if request.method == 'POST':
+        user_form = UserForm()
+        profile_form = ProfileForm()
+    else:
+        user_form = UserForm()
+        profile_form = ProfileForm()
+    return render(request,'profile/profile_edit.html', 
+    {
+    'user_form':user_form , 
+    'prfile_form':profile_form
+    }
+    )
